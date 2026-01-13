@@ -1,52 +1,109 @@
-<script>
-    // Data nominal yang disesuaikan dengan gambar yang diupload
-    const dataNominal = {
-        robux: [
-            "80 RBX - Rp 16k", "160 RBX - Rp 30k", "240 RBX - Rp 45k", 
-            "450 RBX - Rp 75k", "500 RBX - Rp 82k", "1000 RBX - Rp 152k", 
-            "1500 RBX - Rp 230k", "2000 RBX - Rp 290k", "2500 RBX - Rp 360k",
-            "3000 RBX - Rp 427k", "4000 RBX - Rp 557k", "5000 RBX - Rp 690k"
-        ],
-        ml: [
-            "5 Diamonds - Rp 3.446", "12 Diamonds - Rp 5.366", "19 Diamonds - Rp 7.300", 
-            "28 Diamonds - Rp 9.698", "44 Diamonds - Rp 13.667", "59 Diamonds - Rp 17.435",
-            "85 Diamonds - Rp 24.166", "170 Diamonds - Rp 46.331", "257 Diamonds - Rp 69.813",
-            "427 Diamonds - Rp 113.062", "706 Diamonds - Rp 182.886", "1412 Diamonds - Rp 362.651"
-        ],
-        ff: [
-            "5 Diamonds - Rp 1.020", "10 Diamonds - Rp 3.700", "50 Diamonds - Rp 8.400", 
-            "100 Diamonds - Rp 14.800", "355 Diamonds - Rp 54.500", "720 Diamonds - Rp 89.500",
-            "3640 Diamonds - Rp 443.000", "7290 Diamonds - Rp 893.000"
-        ]
-    };
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MawStore - Top Up Game Terpercaya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
+        .btn-wa { background: #25D366; transition: 0.3s; }
+        .btn-wa:hover { transform: scale(1.05); background: #128C7E; }
+    </style>
+</head>
+<body class="bg-slate-50">
 
-    function updateNominal() {
-        const game = document.getElementById('gameSelect').value;
-        const container = document.getElementById('nominalContainer');
-        container.innerHTML = "";
+    <nav class="bg-white shadow-sm p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-600">Maw<span class="text-purple-500">Store</span></h1>
+        </div>
+    </nav>
 
-        if (game && dataNominal[game]) {
-            dataNominal[game].forEach(nom => {
-                const btn = document.createElement('div');
-                btn.className = "p-3 border rounded-lg text-center text-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all";
-                btn.innerText = nom;
-                btn.onclick = function() {
-                    document.querySelectorAll('#nominalContainer div').forEach(d => d.classList.remove('bg-blue-100', 'border-blue-500', 'font-bold'));
-                    btn.classList.add('bg-blue-100', 'border-blue-500', 'font-bold');
-                };
-                container.appendChild(btn);
-            });
-        } else {
-            container.innerHTML = '<p class="text-slate-400 text-sm italic col-span-full text-center">Silahkan pilih game terlebih dahulu...</p>';
+    <header class="gradient-bg py-12 text-center text-white px-4">
+        <h2 class="text-3xl font-bold mb-2">Fast & Safe Top-Up</h2>
+        <p>Top up murah, aman, dan proses secepat kilat!</p>
+    </header>
+
+    <section class="container mx-auto px-4 py-10 max-w-2xl">
+        <div class="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
+            <label class="block font-bold mb-2 text-slate-700">1. Pilih Game</label>
+            <select id="gameSelect" class="w-full p-3 rounded-lg border mb-6 outline-none focus:ring-2 focus:ring-blue-400" onchange="updateNominal()">
+                <option value="">-- Pilih Game --</option>
+                <option value="ml">Mobile Legends</option>
+                <option value="ff">Free Fire</option>
+                <option value="robux">Roblox (Robux Login)</option>
+            </select>
+
+            <label class="block font-bold mb-2 text-slate-700">2. Pilih Nominal</label>
+            <div id="nominalContainer" class="grid grid-cols-2 gap-3 mb-8">
+                <p class="text-slate-400 text-sm italic col-span-full text-center">Pilih game dulu yuk...</p>
+            </div>
+
+            <button onclick="orderViaWA()" class="w-full btn-wa text-white py-4 rounded-xl font-bold text-lg shadow-lg">
+                Pesan via WhatsApp
+            </button>
+        </div>
+    </section>
+
+    <script>
+        // Data Harga Sesuai Gambar yang Dikirim
+        const dataHarga = {
+            ml: [
+                "5 DM - Rp 3.446", "12 DM - Rp 5.366", "28 DM - Rp 9.698", 
+                "85 DM - Rp 24.166", "170 DM - Rp 46.331", "257 DM - Rp 69.813",
+                "427 DM - Rp 113.062", "706 DM - Rp 182.886"
+            ],
+            ff: [
+                "5 DM - Rp 1.020", "50 DM - Rp 8.400", "100 DM - Rp 14.800", 
+                "355 DM - Rp 54.500", "720 DM - Rp 89.500", "Member Mingguan - Rp 29.000"
+            ],
+            robux: [
+                "80 RBX - Rp 16k", "400 RBX - Rp 75k", "800 RBX - Rp 140k", 
+                "1000 RBX - Rp 152k", "2000 RBX - Rp 290k", "5000 RBX - Rp 690k"
+            ]
+        };
+
+        let selectedNominal = "";
+
+        function updateNominal() {
+            const game = document.getElementById('gameSelect').value;
+            const container = document.getElementById('nominalContainer');
+            container.innerHTML = "";
+            selectedNominal = "";
+
+            if (game && dataHarga[game]) {
+                dataHarga[game].forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = "p-3 border rounded-lg text-center text-sm cursor-pointer hover:bg-blue-50 transition";
+                    div.innerText = item;
+                    div.onclick = () => {
+                        document.querySelectorAll('#nominalContainer div').forEach(d => d.classList.remove('bg-blue-100', 'border-blue-500', 'font-bold'));
+                        div.classList.add('bg-blue-100', 'border-blue-500', 'font-bold');
+                        selectedNominal = item;
+                    };
+                    container.appendChild(div);
+                });
+            } else {
+                container.innerHTML = '<p class="text-slate-400 text-sm italic col-span-full text-center">Pilih game dulu yuk...</p>';
+            }
         }
-    }
 
-    function orderNow() {
-        const game = document.getElementById('gameSelect').value;
-        if (!game) {
-            alert("Silakan pilih game terlebih dahulu!");
-            return;
+        function orderViaWA() {
+            const game = document.getElementById('gameSelect').value;
+            const nomorWA = "6285772082404"; // GANTI DENGAN NOMOR WA KAMU (Awali dengan 62)
+
+            if (!game || !selectedNominal) {
+                alert("Harap pilih game dan nominal dulu!");
+                return;
+            }
+
+            const pesan = `Halo Admin MawStore, saya mau order:\n\nGame: ${game.toUpperCase()}\nNominal: ${selectedNominal}\n\nMohon instruksi pembayarannya ya.`;
+            const linkWA = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+            
+            window.open(linkWA, '_blank');
         }
-        alert("Terima kasih! Pesanan " + game.toUpperCase() + " Anda sedang diproses. Admin akan menghubungi Anda untuk instruksi pembayaran.");
-    }
-</script>
+    </script>
+</body>
+</html>

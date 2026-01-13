@@ -7,134 +7,145 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; color: #334155; }
-        .game-card { border: 2px solid #e2e8f0; transition: 0.3s; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; }
+        .game-card { border: 2px solid #e2e8f0; transition: 0.3s; cursor: pointer; }
         .game-card.active { border-color: #3b82f6; background-color: #eff6ff; transform: translateY(-5px); }
-        .nominal-card { border: 2px solid #e2e8f0; transition: 0.2s; }
-        .nominal-card.active { border-color: #8b5cf6; background-color: #f5f3ff; font-weight: bold; }
+        .item-card { border: 2px solid #e2e8f0; transition: 0.2s; cursor: pointer; }
+        .item-card.active { border-color: #8b5cf6; background-color: #f5f3ff; font-weight: bold; }
+        .pay-card { border: 2px solid #e2e8f0; transition: 0.2s; cursor: pointer; }
+        .pay-card.active { border-color: #10b981; background-color: #ecfdf5; }
         .gradient-header { background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%); }
     </style>
 </head>
-<body>
+<body class="pb-10">
 
     <nav class="bg-white shadow-sm p-4 sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-blue-600">Maw<span class="text-purple-500">Store</span></h1>
-            <a href="https://www.instagram.com/USERNAME_IG_KAMU" target="_blank" class="text-sm font-semibold text-pink-600 hover:underline">Instagram kami</a>
+            <h1 class="text-2xl font-bold text-blue-600 uppercase tracking-tighter">Maw<span class="text-purple-500">Store</span></h1>
+            <a href="https://www.instagram.com/USERNAME_IG_KAMU" target="_blank" class="text-xs font-bold text-pink-600 bg-pink-50 px-3 py-2 rounded-full hover:bg-pink-100 transition">Instagram</a>
         </div>
     </nav>
 
     <div class="gradient-header py-12 text-center text-white px-4">
-        <h2 class="text-3xl md:text-4xl font-extrabold drop-shadow-sm">Top Up Game Terpercaya</h2>
-        <p class="mt-2 text-blue-900 font-medium">Cepat, Murah, dan 100% Aman</p>
+        <h2 class="text-3xl font-extrabold drop-shadow-sm">Top Up Game Instant</h2>
+        <p class="mt-2 text-blue-900 font-medium">Proses 1-5 Menit • Aman • Terpercaya</p>
     </div>
 
     <div class="container mx-auto px-4 mt-8 max-w-4xl">
         
-        <div class="bg-white p-6 rounded-2xl shadow-sm mb-6">
-            <h3 class="font-bold text-lg mb-4 flex items-center italic text-blue-700">1. Pilih Game</h3>
+        <div class="bg-white p-6 rounded-2xl shadow-sm mb-6 border border-slate-100">
+            <h3 class="font-bold text-lg mb-4 flex items-center text-blue-700">1. Pilih Game</h3>
             <div class="grid grid-cols-3 gap-4">
-                <div onclick="selectGame('ml')" id="btn-ml" class="game-card rounded-2xl p-3 text-center cursor-pointer hover:shadow-md">
-                    <img src="https://img.icons8.com/color/96/mobile-legends.png" class="mx-auto mb-2 w-14 h-14">
-                    <p class="text-xs font-bold uppercase">Mobile Legends</p>
+                <div onclick="selectGame('ml')" id="btn-ml" class="game-card rounded-2xl p-3 text-center">
+                    <img src="https://img.icons8.com/color/96/mobile-legends.png" class="mx-auto mb-2 w-12 h-12">
+                    <p class="text-[10px] font-extrabold uppercase">MLBB</p>
                 </div>
-                <div onclick="selectGame('ff')" id="btn-ff" class="game-card rounded-2xl p-3 text-center cursor-pointer hover:shadow-md">
-                    <img src="https://img.icons8.com/color/96/free-fire.png" class="mx-auto mb-2 w-14 h-14">
-                    <p class="text-xs font-bold uppercase">Free Fire</p>
+                <div onclick="selectGame('ff')" id="btn-ff" class="game-card rounded-2xl p-3 text-center">
+                    <img src="https://www.freefire.club/wp-content/uploads/2021/01/logo-garena-free-fire-png-7.png" class="mx-auto mb-2 w-12 h-12 object-contain">
+                    <p class="text-[10px] font-extrabold uppercase text-orange-600">Free Fire</p>
                 </div>
-                <div onclick="selectGame('robux')" id="btn-robux" class="game-card rounded-2xl p-3 text-center cursor-pointer hover:shadow-md">
-                    <img src="https://img.icons8.com/color/96/roblox-squared.png" class="mx-auto mb-2 w-14 h-14">
-                    <p class="text-xs font-bold uppercase">Robux Login</p>
+                <div onclick="selectGame('robux')" id="btn-robux" class="game-card rounded-2xl p-3 text-center">
+                    <img src="https://img.icons8.com/color/96/roblox-squared.png" class="mx-auto mb-2 w-12 h-12">
+                    <p class="text-[10px] font-extrabold uppercase text-slate-700">Robux</p>
                 </div>
             </div>
         </div>
 
-        <div class="bg-white p-6 rounded-2xl shadow-sm mb-6">
-            <h3 class="font-bold text-lg mb-4 flex items-center italic text-blue-700">2. Data Akun</h3>
+        <div class="bg-white p-6 rounded-2xl shadow-sm mb-6 border border-slate-100">
+            <h3 class="font-bold text-lg mb-4 text-blue-700">2. Lengkapi Data Akun</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" id="userId" placeholder="Masukkan User ID" class="bg-slate-50 border-2 p-4 rounded-xl outline-none focus:border-blue-400">
-                <input type="text" id="zoneId" placeholder="Server/Zone ID (Opsional)" class="bg-slate-50 border-2 p-4 rounded-xl outline-none focus:border-blue-400">
+                <input type="text" id="userId" placeholder="Masukkan User ID" class="bg-slate-50 border-2 p-4 rounded-xl outline-none focus:border-blue-400 w-full transition">
+                <input type="text" id="zoneId" placeholder="Server/Zone ID" class="bg-slate-50 border-2 p-4 rounded-xl outline-none focus:border-blue-400 w-full transition">
             </div>
-            <p class="text-[10px] text-slate-400 mt-2">*Kesalahan penulisan ID bukan tanggung jawab kami.</p>
         </div>
 
-        <div class="bg-white p-6 rounded-2xl shadow-sm mb-6">
-            <h3 class="font-bold text-lg mb-4 flex items-center italic text-blue-700">3. Pilih Nominal</h3>
+        <div class="bg-white p-6 rounded-2xl shadow-sm mb-6 border border-slate-100">
+            <h3 class="font-bold text-lg mb-4 text-blue-700">3. Pilih Nominal</h3>
             <div id="nominalList" class="grid grid-cols-2 md:grid-cols-3 gap-3">
-                <p class="col-span-full text-slate-400 italic text-center py-4">Silakan pilih game terlebih dahulu...</p>
+                <p class="col-span-full text-slate-400 italic text-center py-4">Pilih game terlebih dahulu...</p>
             </div>
         </div>
 
-        <button onclick="checkout()" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-5 rounded-2xl shadow-lg transition-all transform active:scale-95 text-xl uppercase tracking-wider">
-            Beli & Hubungi IG
-        </button>
-
-    </div>
-
-    <footer class="mt-20 py-10 bg-white border-t text-center">
-        <p class="text-slate-500 font-bold mb-4 italic">MawStore &copy; 2026</p>
-        <div class="flex justify-center space-x-6 text-sm">
-            <a href="https://www.instagram.com/USERNAME_IG_KAMU" target="_blank" class="text-pink-500 font-semibold underline">Follow Instagram</a>
-            <a href="#" class="text-blue-500 font-semibold underline">Cara Order</a>
+        <div class="bg-white p-6 rounded-2xl shadow-sm mb-6 border border-slate-100">
+            <h3 class="font-bold text-lg mb-4 text-blue-700">4. Metode Pembayaran</h3>
+            <div class="grid grid-cols-2 gap-3">
+                <div onclick="selectPay('DANA')" id="pay-DANA" class="pay-card rounded-xl p-3 flex items-center space-x-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_danain.png" class="h-5">
+                    <span class="text-xs font-bold">DANA</span>
+                </div>
+                <div onclick="selectPay('GOPAY')" id="pay-GOPAY" class="pay-card rounded-xl p-3 flex items-center space-x-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/2560px-Gopay_logo.svg.png" class="h-3">
+                    <span class="text-xs font-bold">GOPAY</span>
+                </div>
+                <div onclick="selectPay('SHOPEEPAY')" id="pay-SHOPEEPAY" class="pay-card rounded-xl p-3 flex items-center space-x-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/ShopeePay_logo.svg/2560px-ShopeePay_logo.svg.png" class="h-3">
+                    <span class="text-xs font-bold">SHOPEEPAY</span>
+                </div>
+                <div onclick="selectPay('BANK')" id="pay-BANK" class="pay-card rounded-xl p-3 flex items-center space-x-2">
+                    <span class="text-xs font-bold">🏦 BANK TRANSFER</span>
+                </div>
+            </div>
         </div>
-    </footer>
+
+        <button onclick="checkout()" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-5 rounded-2xl shadow-lg transition-all active:scale-95 text-xl">
+            PESAN SEKARANG VIA IG
+        </button>
+    </div>
 
     <script>
         const hargaData = {
             ml: [
-                "5 Diamonds - Rp 3.446", "12 Diamonds - Rp 5.366", "19 Diamonds - Rp 7.300", 
-                "28 Diamonds - Rp 9.698", "44 Diamonds - Rp 13.567", "59 Diamonds - Rp 17.435",
-                "85 Diamonds - Rp 24.166", "170 Diamonds - Rp 46.332", "257 Diamonds - Rp 69.310",
-                "427 Diamonds - Rp 113.062", "706 Diamonds - Rp 182.886", "1412 Diamonds - Rp 362.651"
+                "5 DM - Rp 3.446", "12 DM - Rp 5.366", "28 DM - Rp 9.698", "85 DM - Rp 24.166",
+                "170 DM - Rp 46.332", "257 DM - Rp 69.310", "427 DM - Rp 113.062", "706 DM - Rp 182.886"
             ],
             ff: [
-                "5 DM - Rp 1.020", "15 DM - Rp 4.500", "50 DM - Rp 8.400", "100 DM - Rp 14.800",
-                "355 DM - Rp 54.500", "720 DM - Rp 89.500", "3640 DM - Rp 443.000", "Member Mingguan - Rp 29.000"
+                "5 DM - Rp 1.020", "50 DM - Rp 8.400", "100 DM - Rp 14.800", "355 DM - Rp 54.500",
+                "720 DM - Rp 89.500", "Member Mingguan - Rp 29.000"
             ],
             robux: [
-                "80 RBX - Rp 16k", "160 RBX - Rp 30k", "450 RBX - Rp 75k", "800 RBX - Rp 140k",
+                "80 RBX - Rp 16k", "160 RBX - Rp 30k", "400 RBX - Rp 75k", "800 RBX - Rp 140k",
                 "1000 RBX - Rp 152k", "2000 RBX - Rp 290k", "5000 RBX - Rp 690k"
             ]
         };
 
-        let selectedGame = "";
-        let selectedNominal = "";
+        let sGame = "", sNominal = "", sPay = "";
 
         function selectGame(game) {
-            selectedGame = game;
-            selectedNominal = "";
+            sGame = game; sNominal = "";
             document.querySelectorAll('.game-card').forEach(el => el.classList.remove('active'));
             document.getElementById('btn-' + game).classList.add('active');
-            
-            const list = document.getElementById('nominalList');
-            list.innerHTML = "";
+            const list = document.getElementById('nominalList'); list.innerHTML = "";
             hargaData[game].forEach(item => {
                 const div = document.createElement('div');
-                div.className = "nominal-card border-2 p-4 rounded-xl cursor-pointer hover:shadow-sm transition text-center text-xs";
+                div.className = "item-card border-2 p-3 rounded-xl text-center text-xs";
                 div.innerText = item;
                 div.onclick = () => {
-                    document.querySelectorAll('.nominal-card').forEach(el => el.classList.remove('active'));
-                    div.classList.add('active');
-                    selectedNominal = item;
+                    document.querySelectorAll('.item-card').forEach(el => el.classList.remove('active'));
+                    div.classList.add('active'); sNominal = item;
                 };
                 list.appendChild(div);
             });
         }
 
+        function selectPay(pay) {
+            sPay = pay;
+            document.querySelectorAll('.pay-card').forEach(el => el.classList.remove('active'));
+            document.getElementById('pay-' + pay).classList.add('active');
+        }
+
         function checkout() {
             const id = document.getElementById('userId').value;
             const zone = document.getElementById('zoneId').value;
-            const usernameIG = "mawrobux"; // GANTI USERNAME IG KAMU DISINI
+            const ig = "mawstore_id"; // <--- GANTI USERNAME IG KAMU DISINI
 
-            if (!selectedGame || !selectedNominal || !id) {
-                alert("Harap lengkapi Game, ID Akun, dan Nominal!");
+            if (!sGame || !sNominal || !id || !sPay) {
+                alert("Lengkapi semua pilihan (Game, ID, Nominal, & Pembayaran)!");
                 return;
             }
 
-            const formatDM = `ORDER: ${selectedGame.toUpperCase()}\nNOMINAL: ${selectedNominal}\nID: ${id} (${zone || '-'})`;
-            alert("Harap Kirim DM Ke IG Kami Dengan Format:\n\n" + formatDM);
-            
-            window.open("https://www.instagram.com/direct/t/" + usernameIG, "_blank");
+            const msg = `Halo MawStore!\nOrder: ${sGame.toUpperCase()}\nNominal: ${sNominal}\nID: ${id} (${zone || '-'})\nBayar: ${sPay}`;
+            alert("Harap Kirim Pesan Ini Ke DM Instagram:\n\n" + msg);
+            window.open("https://www.instagram.com/direct/t/" + ig, "_blank");
         }
     </script>
 </body>

@@ -1,0 +1,52 @@
+<script>
+    // Data nominal yang disesuaikan dengan gambar yang diupload
+    const dataNominal = {
+        robux: [
+            "80 RBX - Rp 16k", "160 RBX - Rp 30k", "240 RBX - Rp 45k", 
+            "450 RBX - Rp 75k", "500 RBX - Rp 82k", "1000 RBX - Rp 152k", 
+            "1500 RBX - Rp 230k", "2000 RBX - Rp 290k", "2500 RBX - Rp 360k",
+            "3000 RBX - Rp 427k", "4000 RBX - Rp 557k", "5000 RBX - Rp 690k"
+        ],
+        ml: [
+            "5 Diamonds - Rp 3.446", "12 Diamonds - Rp 5.366", "19 Diamonds - Rp 7.300", 
+            "28 Diamonds - Rp 9.698", "44 Diamonds - Rp 13.667", "59 Diamonds - Rp 17.435",
+            "85 Diamonds - Rp 24.166", "170 Diamonds - Rp 46.331", "257 Diamonds - Rp 69.813",
+            "427 Diamonds - Rp 113.062", "706 Diamonds - Rp 182.886", "1412 Diamonds - Rp 362.651"
+        ],
+        ff: [
+            "5 Diamonds - Rp 1.020", "10 Diamonds - Rp 3.700", "50 Diamonds - Rp 8.400", 
+            "100 Diamonds - Rp 14.800", "355 Diamonds - Rp 54.500", "720 Diamonds - Rp 89.500",
+            "3640 Diamonds - Rp 443.000", "7290 Diamonds - Rp 893.000"
+        ]
+    };
+
+    function updateNominal() {
+        const game = document.getElementById('gameSelect').value;
+        const container = document.getElementById('nominalContainer');
+        container.innerHTML = "";
+
+        if (game && dataNominal[game]) {
+            dataNominal[game].forEach(nom => {
+                const btn = document.createElement('div');
+                btn.className = "p-3 border rounded-lg text-center text-sm cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all";
+                btn.innerText = nom;
+                btn.onclick = function() {
+                    document.querySelectorAll('#nominalContainer div').forEach(d => d.classList.remove('bg-blue-100', 'border-blue-500', 'font-bold'));
+                    btn.classList.add('bg-blue-100', 'border-blue-500', 'font-bold');
+                };
+                container.appendChild(btn);
+            });
+        } else {
+            container.innerHTML = '<p class="text-slate-400 text-sm italic col-span-full text-center">Silahkan pilih game terlebih dahulu...</p>';
+        }
+    }
+
+    function orderNow() {
+        const game = document.getElementById('gameSelect').value;
+        if (!game) {
+            alert("Silakan pilih game terlebih dahulu!");
+            return;
+        }
+        alert("Terima kasih! Pesanan " + game.toUpperCase() + " Anda sedang diproses. Admin akan menghubungi Anda untuk instruksi pembayaran.");
+    }
+</script>

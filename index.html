@@ -3,67 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MawStore • Fast Top Up Game</title>
+<title>MawStore - Top Up Game</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Poppins,Arial,sans-serif;
-}
-
 body{
-  background:linear-gradient(135deg,#0f172a,#1e1b4b,#312e81);
-  color:#fff;
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#2b1055,#5f2c82,#1e3c72);
+  color:white;
+  min-height:100vh;
 }
 
-/* HEADER */
 .header{
   text-align:center;
-  padding:25px;
+  padding:30px 20px;
 }
 
-.header h1{
-  font-size:2.4rem;
-  background:linear-gradient(90deg,#38bdf8,#a855f7);
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.header p{
-  opacity:.8;
-  margin-top:6px;
-}
-
-/* BANNER */
 .banner{
-  display:flex;
-  justify-content:center;
-  margin:20px auto 35px;
+  width:100%;
+  max-width:900px;
+  margin:0 auto 25px;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:0 12px 35px rgba(0,0,0,.35);
 }
 
 .banner img{
-  width:760px;
-  height:250px;
-  object-fit:cover;
-  border-radius:22px;
-  box-shadow:0 20px 60px rgba(0,0,0,.45);
+  width:100%;
+  display:block;
 }
 
-/* MENU */
+.logo{
+  width:120px;
+  animation:float 3s ease-in-out infinite;
+}
+
+h1{
+  font-family:'Orbitron',sans-serif;
+  margin:10px 0;
+}
+
+.header p{
+  opacity:.85;
+}
+
+.ig{
+  display:inline-block;
+  margin-top:10px;
+  padding:8px 20px;
+  border-radius:20px;
+  background:linear-gradient(45deg,#a855f7,#3b82f6);
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+}
+
 .menu{
-  max-width:900px;
-  margin:0 auto;
-  padding:20px;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:25px;
+  max-width:900px;
+  margin:auto;
+  padding:30px;
 }
 
-.card{
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(12px);
+.game{
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);
   border-radius:20px;
   padding:25px;
   text-align:center;
@@ -71,150 +79,140 @@ body{
   transition:.3s;
 }
 
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 20px 50px rgba(168,85,247,.5);
+.game img{
+  width:90px;
+  animation:float 4s ease-in-out infinite;
 }
 
-.card img{
-  width:80px;
-  margin-bottom:15px;
+.game:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 30px rgba(168,85,247,.6);
 }
 
-.card h3{
-  font-size:1.1rem;
-}
-
-/* PAGE ORDER */
 .page{
   display:none;
-  max-width:480px;
-  margin:30px auto;
-  padding:25px;
-  background:rgba(255,255,255,.1);
-  border-radius:22px;
-  backdrop-filter:blur(15px);
+  max-width:900px;
+  margin:auto;
+  padding:20px;
 }
 
-.page h2{
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:18px;
+  margin-top:20px;
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  transition:.5s;
+}
+
+.grid.show{
+  max-height:2000px;
+  opacity:1;
+}
+
+.card{
+  background:rgba(255,255,255,.14);
+  border-radius:16px;
+  padding:14px;
   text-align:center;
-  margin-bottom:20px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.25s;
 }
 
-input,select,button{
+.card:hover{
+  background:rgba(168,85,247,.45);
+  transform:translateY(-4px);
+}
+
+input{
   width:100%;
   padding:12px;
-  margin-bottom:15px;
-  border:none;
   border-radius:12px;
+  border:none;
+  margin-top:15px;
 }
 
-input,select{
-  background:#111827;
-  color:#fff;
-}
-
-button{
-  background:linear-gradient(90deg,#22d3ee,#a855f7);
-  color:#fff;
-  font-weight:bold;
+.btn{
+  margin-top:15px;
+  padding:14px;
+  text-align:center;
+  background:linear-gradient(45deg,#a855f7,#3b82f6);
+  border-radius:20px;
+  font-weight:700;
   cursor:pointer;
 }
 
-.footer{
+.back{
   text-align:center;
-  padding:25px;
-  opacity:.7;
-  font-size:.9rem;
+  margin-top:15px;
+  opacity:.8;
+  cursor:pointer;
+}
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+  100%{transform:translateY(0)}
+}
+
+@media(max-width:600px){
+  .menu{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));}
+  .grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));}
 }
 </style>
 </head>
-
 <body>
 
-<div class="header">
-  <h1>MawStore</h1>
-  <p>Fast Top Up • Aman • Terpercaya</p>
-</div>
+<!-- HOME -->
+<div id="home">
+  <div class="header">
 
-<!-- BANNER -->
-<div class="banner">
-  <img src="banner.jpg" alt="Banner MawStore">
-</div>
+    <div class="banner">
+      <img src="banner.jpg" alt="MawStore Banner">
+    </div>
 
-<!-- MENU -->
-<div class="menu" id="menu">
-
-  <div class="card" onclick="openPage('rbx')">
-    <img src="roblox.png">
-    <h3>Roblox (Robux)</h3>
+    <img src="logo.png" class="logo">
+    <h1>MawStore</h1>
+    <p>Top Up Game Aman & Terpercaya</p>
+    <a class="ig" href="https://instagram.com/mawstore_id">@mawstore_id</a>
   </div>
 
-  <div class="card" onclick="openPage('ml')">
-    <img src="ml.png">
-    <h3>Mobile Legends</h3>
+  <div class="menu">
+    <div class="game" onclick="openPage('ml')">
+      <img src="ml.png"><h3>Mobile Legends</h3>
+    </div>
+    <div class="game" onclick="openPage('ff')">
+      <img src="ff.png"><h3>Free Fire</h3>
+    </div>
+    <div class="game" onclick="openPage('rbx')">
+      <img src="roblox.png"><h3>Roblox</h3>
+    </div>
   </div>
 
-  <div class="card" onclick="openPage('ff')">
-    <img src="ff.png">
-    <h3>Free Fire</h3>
+  <div class="menu">
+    <div class="game" onclick="dmInstagram('mau rekber min')">
+      <h3>🤝 REKBER</h3>
+    </div>
+    <div class="game" onclick="dmInstagram('mau jual/beli akun min')">
+      <h3>💰 JUAL BELI AKUN GAME</h3>
+    </div>
   </div>
-
-</div>
-
-<!-- ROBLOX -->
-<div class="page" id="rbx">
-  <h2>Top Up Robux</h2>
-  <input placeholder="Username Roblox">
-  <select>
-    <option>80 Robux</option>
-    <option>400 Robux</option>
-    <option>800 Robux</option>
-  </select>
-  <button onclick="order('Roblox')">Order via WhatsApp</button>
-</div>
-
-<!-- ML -->
-<div class="page" id="ml">
-  <h2>Top Up ML Diamonds</h2>
-  <input placeholder="User ID">
-  <input placeholder="Server ID">
-  <select>
-    <option>86 Diamonds</option>
-    <option>172 Diamonds</option>
-    <option>257 Diamonds</option>
-  </select>
-  <button onclick="order('Mobile Legends')">Order via WhatsApp</button>
-</div>
-
-<!-- FF -->
-<div class="page" id="ff">
-  <h2>Top Up FF Diamonds</h2>
-  <input placeholder="Player ID">
-  <select>
-    <option>70 Diamonds</option>
-    <option>140 Diamonds</option>
-    <option>355 Diamonds</option>
-  </select>
-  <button onclick="order('Free Fire')">Order via WhatsApp</button>
-</div>
-
-<div class="footer">
-  © 2026 MawStore • All Rights Reserved
 </div>
 
 <script>
+let selectedText='';
+
 function openPage(id){
-  document.getElementById('menu').style.display='none';
+  document.getElementById('home').style.display='none';
   document.querySelectorAll('.page').forEach(p=>p.style.display='none');
   document.getElementById(id).style.display='block';
 }
 
-function order(game){
-  window.open(
-    "https://wa.me/62XXXXXXXXXX?text=Halo%20MawStore,%20saya%20mau%20topup%20"+game,
-    "_blank"
-  );
+function dmInstagram(msg){
+  window.open(`https://instagram.com/mawstore_id?text=${encodeURIComponent(msg)}`,'_blank');
 }
 </script>
 

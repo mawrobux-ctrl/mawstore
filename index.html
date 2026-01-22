@@ -1,206 +1,240 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MawStore • Fast Top Up Game</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #f5f7fb;
-      color: #1f2937;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MawStore • Top Up Game</title>
 
-    /* NAVBAR */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: #ffffff;
-      box-shadow: 0 2px 10px rgba(0,0,0,.05);
-    }
-    .nav {
-      max-width: 1200px;
-      margin: auto;
-      padding: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-weight: 700;
-      font-size: 20px;
-      color: #2563eb;
-    }
-    .nav a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #374151;
-      font-weight: 500;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    /* HERO */
-    .hero {
-      background: linear-gradient(135deg, #2563eb, #7c3aed);
-      color: white;
-      padding: 80px 16px;
-    }
-    .hero-inner {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: center;
-    }
-    .hero h1 {
-      font-size: 40px;
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-    .hero p {
-      opacity: .9;
-      margin-bottom: 24px;
-    }
-    .hero button {
-      padding: 14px 28px;
-      border: none;
-      border-radius: 10px;
-      background: white;
-      color: #2563eb;
-      font-weight: 600;
-      cursor: pointer;
-    }
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#f4f6f9;
+  color:#1f2937;
+}
 
-    /* SECTION */
-    section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 60px 16px;
-    }
-    section h2 {
-      font-size: 28px;
-      margin-bottom: 30px;
-      text-align: center;
-    }
+/* HEADER */
+.header{
+  background:white;
+  text-align:center;
+  padding:30px 20px;
+  box-shadow:0 2px 10px rgba(0,0,0,.05);
+}
+.logo{width:90px}
+h1{margin:10px 0 5px}
+.ig{
+  display:inline-block;
+  margin-top:8px;
+  padding:8px 18px;
+  border-radius:20px;
+  background:#2563eb;
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  font-size:14px;
+}
 
-    /* PRODUCT CARD */
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-    }
-    .card {
-      background: white;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 10px 25px rgba(0,0,0,.05);
-      transition: .3s;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card h3 {
-      margin-bottom: 10px;
-    }
-    .price {
-      font-weight: 700;
-      color: #2563eb;
-      margin-bottom: 16px;
-    }
-    .card button {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      background: #2563eb;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
-    }
+/* MENU */
+.menu{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:20px;
+  max-width:1000px;
+  margin:40px auto;
+  padding:0 20px;
+}
 
-    /* FOOTER */
-    footer {
-      background: #111827;
-      color: #9ca3af;
-      text-align: center;
-      padding: 30px 16px;
-      margin-top: 60px;
-    }
+.game{
+  background:white;
+  border-radius:18px;
+  padding:25px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+  transition:.3s;
+}
+.game img{width:80px;margin-bottom:10px}
+.game:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 40px rgba(37,99,235,.25);
+}
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-    }
-  </style>
+/* PAGE */
+.page{
+  display:none;
+  max-width:1000px;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:15px;
+  margin-top:20px;
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  transition:.4s;
+}
+.grid.show{
+  max-height:3000px;
+  opacity:1;
+}
+
+.card{
+  background:white;
+  border-radius:14px;
+  padding:15px;
+  text-align:center;
+  font-weight:600;
+  cursor:pointer;
+  border:2px solid transparent;
+  transition:.25s;
+}
+.card:hover{
+  border-color:#2563eb;
+  color:#2563eb;
+}
+
+input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #d1d5db;
+  margin-top:15px;
+}
+
+.btn{
+  margin-top:20px;
+  padding:15px;
+  text-align:center;
+  background:#2563eb;
+  color:white;
+  border-radius:12px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.back{
+  text-align:center;
+  margin-top:15px;
+  color:#2563eb;
+  cursor:pointer;
+}
+
+footer{
+  margin-top:60px;
+  padding:30px;
+  text-align:center;
+  color:#6b7280;
+  font-size:14px;
+}
+</style>
 </head>
 <body>
 
-<header>
-  <div class="nav">
-    <div class="logo">MawStore</div>
-    <div>
-      <a href="#produk">Produk</a>
-      <a href="#cara">Cara Top Up</a>
-    </div>
+<!-- HOME -->
+<div id="home">
+  <div class="header">
+    <img src="logo.png" class="logo">
+    <h1>MawStore</h1>
+    <p>Top Up Game Cepat & Aman</p>
+    <a class="ig" href="https://instagram.com/mawstore_id">@mawstore_id</a>
   </div>
-</header>
 
-<div class="hero">
-  <div class="hero-inner">
-    <div>
-      <h1>Top Up Game Cepat & Aman</h1>
-      <p>Top up Robux resmi, proses cepat, pembayaran lengkap.</p>
-      <button onclick="document.getElementById('produk').scrollIntoView({behavior:'smooth'})">
-        Top Up Sekarang
-      </button>
+  <div class="menu">
+    <div class="game" onclick="openPage('ml')">
+      <img src="ml.png"><h3>Mobile Legends</h3>
     </div>
-    <div>
-      <img src="https://i.imgur.com/6X8Kq5T.png" alt="Game" style="width:100%;border-radius:20px;">
+    <div class="game" onclick="openPage('ff')">
+      <img src="ff.png"><h3>Free Fire</h3>
+    </div>
+    <div class="game" onclick="openPage('rbx')">
+      <img src="roblox.png"><h3>Roblox</h3>
     </div>
   </div>
 </div>
 
-<section id="produk">
-  <h2>Top Up Robux</h2>
-  <div class="products">
-    <div class="card">
-      <h3>80 Robux</h3>
-      <div class="price">Rp 15.000</div>
-      <button>Buy Now</button>
-    </div>
-    <div class="card">
-      <h3>400 Robux</h3>
-      <div class="price">Rp 75.000</div>
-      <button>Buy Now</button>
-    </div>
-    <div class="card">
-      <h3>800 Robux</h3>
-      <div class="price">Rp 145.000</div>
-      <button>Buy Now</button>
-    </div>
-  </div>
-</section>
+<!-- MOBILE LEGENDS -->
+<div id="ml" class="page">
+<h2>Mobile Legends</h2>
+<div class="grid show">
+  <div class="card" onclick="selectItem('5 Diamond - Rp 1.636')">5 💎<br>Rp 1.636</div>
+  <div class="card" onclick="selectItem('88 Diamond - Rp 24.500')">88 💎<br>Rp 24.500</div>
+  <div class="card" onclick="selectItem('240 Diamond - Rp 66.100')">240 💎<br>Rp 66.100</div>
+</div>
+<p id="selectedItem">Silakan pilih paket</p>
+<input placeholder="Masukkan ID / Nickname">
+<div class="btn" onclick="order('Mobile Legends')">Order via Instagram</div>
+<div class="back" onclick="goHome()">← Kembali</div>
+</div>
 
-<section id="cara">
-  <h2>Cara Top Up</h2>
-  <p style="text-align:center;max-width:700px;margin:auto;">
-    1. Pilih paket Robux<br>
-    2. Masukkan Username Roblox<br>
-    3. Pilih pembayaran (Dana, GoPay, ShopeePay, Bank)<br>
-    4. Selesaikan pembayaran<br>
-    5. Robux masuk otomatis
-  </p>
-</section>
+<!-- FREE FIRE -->
+<div id="ff" class="page">
+<h2>Free Fire</h2>
+<div class="grid show">
+  <div class="card" onclick="selectItem('50 Diamond - Rp 7.000')">50 💎<br>Rp 7.000</div>
+  <div class="card" onclick="selectItem('140 Diamond - Rp 18.500')">140 💎<br>Rp 18.500</div>
+  <div class="card" onclick="selectItem('355 Diamond - Rp 47.000')">355 💎<br>Rp 47.000</div>
+</div>
+<p id="selectedItem">Silakan pilih paket</p>
+<input placeholder="Masukkan ID / Nickname">
+<div class="btn" onclick="order('Free Fire')">Order via Instagram</div>
+<div class="back" onclick="goHome()">← Kembali</div>
+</div>
+
+<!-- ROBLOX -->
+<div id="rbx" class="page">
+<h2>Roblox</h2>
+<div class="grid show">
+  <div class="card" onclick="selectItem('80 Robux - Rp 16.000')">80 RBX<br>Rp 16.000</div>
+  <div class="card" onclick="selectItem('450 Robux - Rp 75.000')">450 RBX<br>Rp 75.000</div>
+  <div class="card" onclick="selectItem('1000 Robux - Rp 152.000')">1000 RBX<br>Rp 152.000</div>
+</div>
+<p id="selectedItem">Silakan pilih paket</p>
+<input placeholder="Masukkan Username Roblox">
+<div class="btn" onclick="order('Roblox')">Order via Instagram</div>
+<div class="back" onclick="goHome()">← Kembali</div>
+</div>
 
 <footer>
-  © 2026 MawStore • Fast Top Up Game
+© 2026 MawStore • Fast Top Up Game
 </footer>
+
+<script>
+let selectedText='';
+
+function openPage(id){
+  document.getElementById('home').style.display='none';
+  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
+  document.getElementById(id).style.display='block';
+  selectedText='';
+  document.querySelectorAll('#selectedItem').forEach(i=>i.innerText='Silakan pilih paket');
+}
+
+function selectItem(text){
+  selectedText=text;
+  document.querySelectorAll('#selectedItem').forEach(i=>i.innerText='Dipilih: '+text);
+}
+
+function goHome(){
+  document.getElementById('home').style.display='block';
+  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
+}
+
+function order(game){
+  const page=document.querySelector('.page[style*="block"]');
+  const id=page.querySelector('input').value;
+  if(!selectedText)return alert('Pilih paket!');
+  if(!id)return alert('Isi ID!');
+  const msg=`Halo MawStore, saya mau order ${game}\nItem: ${selectedText}\nID: ${id}`;
+  window.open(`https://instagram.com/mawstore_id?text=${encodeURIComponent(msg)}`,'_blank');
+}
+</script>
 
 </body>
 </html>

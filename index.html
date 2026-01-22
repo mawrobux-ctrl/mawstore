@@ -22,110 +22,111 @@ body{
 
 /* HEADER */
 .header{
-  padding:30px 20px;
   text-align:center;
+  padding:30px 20px 10px;
 }
 
 .header h1{
-  font-size:2.6rem;
-  font-weight:700;
+  font-size:2.4rem;
   background:linear-gradient(90deg,#38bdf8,#a855f7);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
 .header p{
-  opacity:.8;
+  opacity:.85;
   margin-top:6px;
 }
 
+/* BANNER */
+.banner-wrapper{
+  display:flex;
+  justify-content:center;
+  margin:25px 0 40px;
+}
+
 .banner{
-  width:500px;
+  width:760px;
   height:250px;
-  margin:15px auto 30px;
-  border-radius:16px;
+  border-radius:20px;
   overflow:hidden;
-  box-shadow:0 16px 45px rgba(0,0,0,.45);
+  box-shadow:0 25px 70px rgba(0,0,0,.45);
+  cursor:pointer;
 }
 
 .banner img{
   width:100%;
   height:100%;
-  object-fit:cover; /* biar ML & FF tetap keliatan */
+  object-fit:cover;
+  transition:.4s;
 }
 
-.banner img:hover{
-  transform:scale(1.02);
-  box-shadow:0 30px 90px rgba(168,85,247,.6);
+.banner:hover img{
+  transform:scale(1.05);
 }
 
 /* MENU */
 .menu{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:22px;
+  gap:20px;
   max-width:900px;
-  margin:auto;
+  margin:0 auto;
   padding:20px;
 }
 
 .card{
-  background:rgba(255,255,255,.08);
-  backdrop-filter:blur(14px);
-  border-radius:22px;
-  padding:28px;
+  background:rgba(255,255,255,.1);
+  backdrop-filter:blur(12px);
+  border-radius:20px;
+  padding:25px;
   text-align:center;
   cursor:pointer;
-  transition:.35s;
-  box-shadow:0 12px 35px rgba(0,0,0,.35);
+  transition:.3s;
 }
 
 .card:hover{
-  transform:translateY(-10px) scale(1.04);
-  box-shadow:0 28px 65px rgba(168,85,247,.6);
+  transform:translateY(-6px) scale(1.03);
+  box-shadow:0 25px 60px rgba(168,85,247,.5);
 }
 
-/* LOGO GAME (INI FIX ML & FF) */
 .card img{
   width:80px;
-  height:80px;
-  object-fit:contain;
   margin-bottom:15px;
 }
 
 .card h3{
   font-size:1.2rem;
-  font-weight:600;
 }
 
 /* PAGE ORDER */
 .page{
   display:none;
-  max-width:500px;
-  margin:35px auto;
-  padding:28px;
-  background:rgba(255,255,255,.1);
-  border-radius:26px;
-  backdrop-filter:blur(16px);
-  box-shadow:0 22px 70px rgba(0,0,0,.45);
+  max-width:480px;
+  margin:40px auto;
+  padding:25px;
+  background:rgba(255,255,255,.12);
+  border-radius:25px;
+  backdrop-filter:blur(15px);
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
 }
 
 .page h2{
   text-align:center;
-  margin-bottom:22px;
+  margin-bottom:20px;
 }
 
 input,select,button{
   width:100%;
-  padding:13px;
+  padding:12px;
   margin-bottom:15px;
   border:none;
-  border-radius:14px;
+  border-radius:12px;
   font-size:1rem;
 }
 
 input,select{
-  background:#020617;
+  background:#111827;
   color:#fff;
 }
 
@@ -142,17 +143,25 @@ button:hover{
 
 .back{
   text-align:center;
-  margin-top:10px;
-  opacity:.7;
+  opacity:.8;
   cursor:pointer;
 }
 
 /* FOOTER */
 .footer{
   text-align:center;
-  padding:25px;
+  padding:30px;
   opacity:.7;
   font-size:.9rem;
+}
+
+/* RESPONSIVE */
+@media(max-width:820px){
+  .banner{
+    width:95%;
+    height:auto;
+    aspect-ratio:760/250;
+  }
 }
 </style>
 </head>
@@ -166,24 +175,26 @@ button:hover{
 </div>
 
 <!-- BANNER -->
-<div class="banner">
-  <img src="banner.jpg" alt="Top Up Game MawStore">
+<div class="banner-wrapper">
+  <div class="banner" onclick="openPage('rbx')">
+    <img src="banner.jpg" alt="Banner MawStore">
+  </div>
 </div>
 
 <!-- MENU -->
 <div class="menu" id="menu">
   <div class="card" onclick="openPage('rbx')">
-    <img src="roblox.png">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
     <h3>Roblox (Robux)</h3>
   </div>
 
   <div class="card" onclick="openPage('ml')">
-    <img src="ml.png">
+    <img src="https://seeklogo.com/images/M/mobile-legends-logo-DAFCE7E0B3-seeklogo.com.png">
     <h3>Mobile Legends</h3>
   </div>
 
   <div class="card" onclick="openPage('ff')">
-    <img src="ff.png">
+    <img src="https://seeklogo.com/images/F/free-fire-logo-6A7D71E19F-seeklogo.com.png">
     <h3>Free Fire</h3>
   </div>
 </div>
@@ -203,7 +214,7 @@ button:hover{
 
 <!-- ML -->
 <div class="page" id="ml">
-  <h2>Top Up ML Diamonds</h2>
+  <h2>Top Up Mobile Legends</h2>
   <input placeholder="User ID">
   <input placeholder="Server ID">
   <select>
@@ -217,7 +228,7 @@ button:hover{
 
 <!-- FF -->
 <div class="page" id="ff">
-  <h2>Top Up FF Diamonds</h2>
+  <h2>Top Up Free Fire</h2>
   <input placeholder="Player ID">
   <select>
     <option>70 Diamonds</option>
@@ -228,6 +239,7 @@ button:hover{
   <div class="back" onclick="goHome()">← Kembali</div>
 </div>
 
+<!-- FOOTER -->
 <div class="footer">
   © 2026 MawStore • All Rights Reserved
 </div>
@@ -237,6 +249,7 @@ function openPage(id){
   document.getElementById('menu').style.display='none';
   document.querySelectorAll('.page').forEach(p=>p.style.display='none');
   document.getElementById(id).style.display='block';
+  window.scrollTo(0,0);
 }
 
 function goHome(){
@@ -254,6 +267,3 @@ function order(game){
 
 </body>
 </html>
-
-
-

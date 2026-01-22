@@ -16,18 +16,23 @@ body{
   min-height:100vh;
 }
 
+/* ===== HEADER ===== */
 .header{
   text-align:center;
   padding:30px 20px;
 }
 
+/* ===== BANNER NEON ===== */
 .banner{
+  position:relative;
   width:100%;
   max-width:900px;
   margin:0 auto 25px;
   border-radius:22px;
   overflow:hidden;
-  box-shadow:0 12px 35px rgba(0,0,0,.35);
+  box-shadow:
+    0 0 25px rgba(168,85,247,.6),
+    0 0 45px rgba(59,130,246,.45);
 }
 
 .banner img{
@@ -35,6 +40,35 @@ body{
   display:block;
 }
 
+/* NEON SAMPING */
+.banner::before,
+.banner::after{
+  content:'';
+  position:absolute;
+  top:10%;
+  bottom:10%;
+  width:8px;
+  border-radius:10px;
+  filter:blur(8px);
+  animation:neonPulse 3s ease-in-out infinite;
+}
+
+.banner::before{
+  left:-10px;
+  background:linear-gradient(#a855f7,#3b82f6);
+}
+
+.banner::after{
+  right:-10px;
+  background:linear-gradient(#3b82f6,#a855f7);
+}
+
+@keyframes neonPulse{
+  0%,100%{opacity:.6}
+  50%{opacity:1}
+}
+
+/* ===== LOGO ===== */
 .logo{
   width:120px;
   animation:float 3s ease-in-out infinite;
@@ -43,6 +77,7 @@ body{
 h1{
   font-family:'Orbitron',sans-serif;
   margin:10px 0;
+  letter-spacing:1px;
 }
 
 .header p{
@@ -60,6 +95,7 @@ h1{
   font-weight:600;
 }
 
+/* ===== MENU GAME ===== */
 .menu{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
@@ -89,132 +125,67 @@ h1{
   box-shadow:0 0 30px rgba(168,85,247,.6);
 }
 
-.page{
-  display:none;
-  max-width:900px;
-  margin:auto;
-  padding:20px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:18px;
-  margin-top:20px;
-  max-height:0;
-  opacity:0;
-  overflow:hidden;
-  transition:.5s;
-}
-
-.grid.show{
-  max-height:2000px;
-  opacity:1;
-}
-
-.card{
-  background:rgba(255,255,255,.14);
-  border-radius:16px;
-  padding:14px;
-  text-align:center;
-  font-weight:600;
-  cursor:pointer;
-  transition:.25s;
-}
-
-.card:hover{
-  background:rgba(168,85,247,.45);
-  transform:translateY(-4px);
-}
-
-input{
-  width:100%;
-  padding:12px;
-  border-radius:12px;
-  border:none;
-  margin-top:15px;
-}
-
-.btn{
-  margin-top:15px;
-  padding:14px;
-  text-align:center;
-  background:linear-gradient(45deg,#a855f7,#3b82f6);
-  border-radius:20px;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.back{
-  text-align:center;
-  margin-top:15px;
-  opacity:.8;
-  cursor:pointer;
-}
-
+/* ===== ANIMASI ===== */
 @keyframes float{
   0%{transform:translateY(0)}
   50%{transform:translateY(-10px)}
   100%{transform:translateY(0)}
 }
 
+/* ===== RESPONSIVE ===== */
 @media(max-width:600px){
-  .menu{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));}
-  .grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));}
+  .menu{
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  }
+  .banner::before,
+  .banner::after{
+    width:6px;
+  }
 }
 </style>
 </head>
+
 <body>
 
 <!-- HOME -->
 <div id="home">
   <div class="header">
 
+    <!-- BANNER -->
     <div class="banner">
       <img src="banner.jpg" alt="MawStore Banner">
     </div>
 
+    <!-- LOGO -->
     <img src="logo.png" class="logo">
     <h1>MawStore</h1>
     <p>Top Up Game Aman & Terpercaya</p>
     <a class="ig" href="https://instagram.com/mawstore_id">@mawstore_id</a>
   </div>
 
+  <!-- GAME UTAMA -->
   <div class="menu">
-    <div class="game" onclick="openPage('ml')">
+    <div class="game">
       <img src="ml.png"><h3>Mobile Legends</h3>
     </div>
-    <div class="game" onclick="openPage('ff')">
+    <div class="game">
       <img src="ff.png"><h3>Free Fire</h3>
     </div>
-    <div class="game" onclick="openPage('rbx')">
+    <div class="game">
       <img src="roblox.png"><h3>Roblox</h3>
     </div>
   </div>
 
+  <!-- FITUR LAIN -->
   <div class="menu">
-    <div class="game" onclick="dmInstagram('mau rekber min')">
+    <div class="game">
       <h3>🤝 REKBER</h3>
     </div>
-    <div class="game" onclick="dmInstagram('mau jual/beli akun min')">
+    <div class="game">
       <h3>💰 JUAL BELI AKUN GAME</h3>
     </div>
   </div>
 </div>
-
-<script>
-let selectedText='';
-
-function openPage(id){
-  document.getElementById('home').style.display='none';
-  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
-  document.getElementById(id).style.display='block';
-}
-
-function dmInstagram(msg){
-  window.open(`https://instagram.com/mawstore_id?text=${encodeURIComponent(msg)}`,'_blank');
-}
-</script>
 
 </body>
 </html>

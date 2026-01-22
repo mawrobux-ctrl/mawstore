@@ -28,42 +28,45 @@ body{
 
 .header h1{
   font-size:2.6rem;
+  font-weight:700;
   background:linear-gradient(90deg,#38bdf8,#a855f7);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
 .header p{
-  opacity:.85;
-  margin-top:8px;
+  opacity:.8;
+  margin-top:6px;
 }
 
 /* BANNER */
 .banner{
-  max-width:1100px;
-  margin:10px auto 35px;
+  max-width:900px;
+  margin:15px auto 35px;
   padding:0 20px;
 }
 
 .banner img{
   width:100%;
-  border-radius:25px;
-  box-shadow:0 25px 70px rgba(0,0,0,.45);
+  max-height:300px;
+  object-fit:cover;
+  border-radius:22px;
+  box-shadow:0 18px 55px rgba(0,0,0,.5);
   transition:.4s;
 }
 
 .banner img:hover{
   transform:scale(1.02);
-  box-shadow:0 35px 90px rgba(168,85,247,.6);
+  box-shadow:0 30px 90px rgba(168,85,247,.6);
 }
 
-/* MENU GAME */
+/* MENU */
 .menu{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
   gap:22px;
   max-width:900px;
-  margin:0 auto;
+  margin:auto;
   padding:20px;
 }
 
@@ -74,34 +77,38 @@ body{
   padding:28px;
   text-align:center;
   cursor:pointer;
-  transition:.3s;
-  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  transition:.35s;
+  box-shadow:0 12px 35px rgba(0,0,0,.35);
 }
 
 .card:hover{
   transform:translateY(-10px) scale(1.04);
-  box-shadow:0 25px 60px rgba(168,85,247,.5);
+  box-shadow:0 28px 65px rgba(168,85,247,.6);
 }
 
+/* LOGO GAME (INI FIX ML & FF) */
 .card img{
-  width:85px;
-  margin-bottom:18px;
+  width:80px;
+  height:80px;
+  object-fit:contain;
+  margin-bottom:15px;
 }
 
 .card h3{
   font-size:1.2rem;
+  font-weight:600;
 }
 
-/* HALAMAN ORDER */
+/* PAGE ORDER */
 .page{
   display:none;
   max-width:500px;
-  margin:30px auto;
+  margin:35px auto;
   padding:28px;
   background:rgba(255,255,255,.1);
-  border-radius:25px;
+  border-radius:26px;
   backdrop-filter:blur(16px);
-  box-shadow:0 20px 60px rgba(0,0,0,.45);
+  box-shadow:0 22px 70px rgba(0,0,0,.45);
 }
 
 .page h2{
@@ -119,7 +126,7 @@ input,select,button{
 }
 
 input,select{
-  background:#111827;
+  background:#020617;
   color:#fff;
 }
 
@@ -134,10 +141,17 @@ button:hover{
   opacity:.9;
 }
 
+.back{
+  text-align:center;
+  margin-top:10px;
+  opacity:.7;
+  cursor:pointer;
+}
+
 /* FOOTER */
 .footer{
   text-align:center;
-  padding:30px;
+  padding:25px;
   opacity:.7;
   font-size:.9rem;
 }
@@ -185,6 +199,7 @@ button:hover{
     <option>800 Robux</option>
   </select>
   <button onclick="order('Roblox')">Order via WhatsApp</button>
+  <div class="back" onclick="goHome()">← Kembali</div>
 </div>
 
 <!-- ML -->
@@ -198,6 +213,7 @@ button:hover{
     <option>257 Diamonds</option>
   </select>
   <button onclick="order('Mobile Legends')">Order via WhatsApp</button>
+  <div class="back" onclick="goHome()">← Kembali</div>
 </div>
 
 <!-- FF -->
@@ -210,9 +226,9 @@ button:hover{
     <option>355 Diamonds</option>
   </select>
   <button onclick="order('Free Fire')">Order via WhatsApp</button>
+  <div class="back" onclick="goHome()">← Kembali</div>
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
   © 2026 MawStore • All Rights Reserved
 </div>
@@ -222,6 +238,11 @@ function openPage(id){
   document.getElementById('menu').style.display='none';
   document.querySelectorAll('.page').forEach(p=>p.style.display='none');
   document.getElementById(id).style.display='block';
+}
+
+function goHome(){
+  document.getElementById('menu').style.display='grid';
+  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
 }
 
 function order(game){

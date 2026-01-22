@@ -3,135 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MawStore • Top Up Game</title>
+<title>MawStore - Top Up Game</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-*{box-sizing:border-box}
 body{
   margin:0;
   font-family:'Poppins',sans-serif;
-  background:#f4f6f9;
-  color:#1f2937;
+  background:linear-gradient(135deg,#2b1055,#5f2c82,#1e3c72);
+  color:white;
+  min-height:100vh;
 }
 
-/* HEADER */
-.header{
-  background:white;
-  text-align:center;
-  padding:30px 20px;
-  box-shadow:0 2px 10px rgba(0,0,0,.05);
-}
-.logo{width:90px}
-h1{margin:10px 0 5px}
+.header{text-align:center;padding:40px 20px}
+.logo{width:120px;animation:float 3s ease-in-out infinite}
+h1{font-family:'Orbitron',sans-serif;margin:10px 0}
 .ig{
   display:inline-block;
-  margin-top:8px;
-  padding:8px 18px;
+  margin-top:10px;
+  padding:8px 20px;
   border-radius:20px;
-  background:#2563eb;
+  background:linear-gradient(45deg,#a855f7,#3b82f6);
   color:white;
   text-decoration:none;
   font-weight:600;
-  font-size:14px;
 }
 
-/* MENU */
 .menu{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:20px;
-  max-width:1000px;
-  margin:40px auto;
-  padding:0 20px;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:25px;
+  max-width:900px;
+  margin:auto;
+  padding:30px;
 }
 
 .game{
-  background:white;
-  border-radius:18px;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(10px);
+  border-radius:20px;
   padding:25px;
   text-align:center;
   cursor:pointer;
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
   transition:.3s;
 }
-.game img{width:80px;margin-bottom:10px}
-.game:hover{
-  transform:translateY(-6px);
-  box-shadow:0 20px 40px rgba(37,99,235,.25);
-}
+.game img{width:90px;animation:float 4s ease-in-out infinite}
+.game:hover{transform:scale(1.08);box-shadow:0 0 30px rgba(168,85,247,.6)}
 
-/* PAGE */
-.page{
-  display:none;
-  max-width:1000px;
-  margin:40px auto;
-  padding:0 20px;
-}
+.page{display:none;max-width:900px;margin:auto;padding:20px}
 
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
   gap:15px;
   margin-top:20px;
+  overflow:hidden;
+  transition:max-height 0.5s ease, opacity 0.5s ease;
   max-height:0;
   opacity:0;
-  overflow:hidden;
-  transition:.4s;
 }
+
 .grid.show{
-  max-height:3000px;
+  max-height:2000px; 
   opacity:1;
 }
 
 .card{
-  background:white;
-  border-radius:14px;
-  padding:15px;
+  background:rgba(255,255,255,.15);
+  border-radius:15px;
+  padding:12px;
   text-align:center;
   font-weight:600;
   cursor:pointer;
-  border:2px solid transparent;
-  transition:.25s;
+  transition:background 0.3s, transform 0.3s;
 }
-.card:hover{
-  border-color:#2563eb;
-  color:#2563eb;
-}
+.card:hover{background:rgba(168,85,247,.5); transform:scale(1.05);}
 
 input{
   width:100%;
-  padding:14px;
+  padding:12px;
   border-radius:12px;
-  border:1px solid #d1d5db;
+  border:none;
   margin-top:15px;
 }
 
 .btn{
-  margin-top:20px;
-  padding:15px;
+  margin-top:15px;
+  padding:14px;
   text-align:center;
-  background:#2563eb;
-  color:white;
-  border-radius:12px;
+  background:linear-gradient(45deg,#a855f7,#3b82f6);
+  border-radius:20px;
   font-weight:700;
   cursor:pointer;
 }
 
-.back{
-  text-align:center;
-  margin-top:15px;
-  color:#2563eb;
-  cursor:pointer;
+.back{text-align:center;margin-top:15px;opacity:.8;cursor:pointer}
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+  100%{transform:translateY(0)}
 }
 
-footer{
-  margin-top:60px;
-  padding:30px;
-  text-align:center;
-  color:#6b7280;
-  font-size:14px;
+@media(max-width:600px){
+  .menu{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));}
+  .grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));}
 }
 </style>
 </head>
@@ -142,10 +119,11 @@ footer{
   <div class="header">
     <img src="logo.png" class="logo">
     <h1>MawStore</h1>
-    <p>Top Up Game Cepat & Aman</p>
+    <p>Top Up Game Aman & Terpercaya</p>
     <a class="ig" href="https://instagram.com/mawstore_id">@mawstore_id</a>
   </div>
 
+  <!-- Baris 1: 3 Game Utama -->
   <div class="menu">
     <div class="game" onclick="openPage('ml')">
       <img src="ml.png"><h3>Mobile Legends</h3>
@@ -157,15 +135,68 @@ footer{
       <img src="roblox.png"><h3>Roblox</h3>
     </div>
   </div>
+
+  <!-- Baris 2: REKBER & JUAL BELI AKUN -->
+  <div class="menu" style="margin-top:20px;">
+    <div class="game" onclick="dmInstagram('mau rekber min')">
+      <h3>🤝 REKBER</h3>
+    </div>
+    <div class="game" onclick="dmInstagram('mau jual/beli akun min')">
+      <h3>💰 JUAL BELI AKUN GAME</h3>
+    </div>
+  </div>
 </div>
 
-<!-- MOBILE LEGENDS -->
+<!-- ML, FF, ROBLOX Pages tetap sama seperti versi full sebelumnya -->
+<!-- Mobile Legends -->
 <div id="ml" class="page">
-<h2>Mobile Legends</h2>
-<div class="grid show">
-  <div class="card" onclick="selectItem('5 Diamond - Rp 1.636')">5 💎<br>Rp 1.636</div>
-  <div class="card" onclick="selectItem('88 Diamond - Rp 24.500')">88 💎<br>Rp 24.500</div>
-  <div class="card" onclick="selectItem('240 Diamond - Rp 66.100')">240 💎<br>Rp 66.100</div>
+<h2>Mobile Legends 💎</h2>
+<div class="grid" id="ml-categories" style="max-height:none;opacity:1;">
+  <div class="card" onclick="toggleML('diamond')">Diamond</div>
+  <div class="card" onclick="toggleML('weekly')">Weekly Diamond Pass</div>
+</div>
+<div class="grid" id="ml-diamond">
+  <div class="card">5 💎<br>Rp 1.636</div>
+  <div class="card">12 💎<br>Rp 3.600</div>
+  <div class="card">19 💎<br>Rp 5.680</div>
+  <div class="card">28 💎<br>Rp 8.000</div>
+  <div class="card">44 💎<br>Rp 12.150</div>
+  <div class="card">59 💎<br>Rp 16.100</div>
+  <div class="card">85 💎<br>Rp 23.300</div>
+  <div class="card">88 💎<br>Rp 24.500</div>
+  <div class="card">113 💎<br>Rp 31.450</div>
+  <div class="card">170 💎<br>Rp 46.500</div>
+  <div class="card">172 💎<br>Rp 47.200</div>
+  <div class="card">240 💎<br>Rp 66.100</div>
+  <div class="card">257 💎<br>Rp 69.500</div>
+  <div class="card">259 💎<br>Rp 70.500</div>
+  <div class="card">284 💎<br>Rp 77.589</div>
+  <div class="card">296 💎<br>Rp 80.550</div>
+  <div class="card">345 💎<br>Rp 93.400</div>
+  <div class="card">355 💎<br>Rp 95.000</div>
+  <div class="card">408 💎<br>Rp 111.150</div>
+  <div class="card">427 💎<br>Rp 115.000</div>
+  <div class="card">430 💎<br>Rp 116.000</div>
+  <div class="card">514 💎<br>Rp 139.500</div>
+  <div class="card">568 💎<br>Rp 152.100</div>
+  <div class="card">601 💎<br>Rp 158.700</div>
+  <div class="card">706 💎<br>Rp 188.000</div>
+  <div class="card">875 💎<br>Rp 233.437</div>
+  <div class="card">879 💎<br>Rp 231.000</div>
+  <div class="card">963 💎<br>Rp 254.700</div>
+  <div class="card">1050 💎<br>Rp 285.845</div>
+  <div class="card">1139 💎<br>Rp 304.500</div>
+  <div class="card">1220 💎<br>Rp 324.000</div>
+  <div class="card">1412 💎<br>Rp 364.000</div>
+  <div class="card">2010 💎<br>Rp 580.100</div>
+  <div class="card">2197 💎<br>Rp 548.000</div>
+  <div class="card">4020 💎<br>Rp 1.020.100</div>
+  <div class="card">4830 💎<br>Rp 1.222.035</div>
+  <div class="card">5532 💎<br>Rp 1.400.000</div>
+  <div class="card">9288 💎<br>Rp 2.280.500</div>
+</div>
+<div class="grid" id="ml-weekly">
+  <div class="card">28.800 💎</div>
 </div>
 <p id="selectedItem">Silakan pilih paket</p>
 <input placeholder="Masukkan ID / Nickname">
@@ -173,13 +204,36 @@ footer{
 <div class="back" onclick="goHome()">← Kembali</div>
 </div>
 
-<!-- FREE FIRE -->
+<!-- Free Fire -->
 <div id="ff" class="page">
-<h2>Free Fire</h2>
-<div class="grid show">
-  <div class="card" onclick="selectItem('50 Diamond - Rp 7.000')">50 💎<br>Rp 7.000</div>
-  <div class="card" onclick="selectItem('140 Diamond - Rp 18.500')">140 💎<br>Rp 18.500</div>
-  <div class="card" onclick="selectItem('355 Diamond - Rp 47.000')">355 💎<br>Rp 47.000</div>
+<h2>Free Fire 🔥</h2>
+<div class="grid" id="ff-categories" style="max-height:none;opacity:1;">
+  <div class="card" onclick="toggleFF('weekly')">Paket Mingguan</div>
+  <div class="card" onclick="toggleFF('monthly')">Paket Bulanan</div>
+  <div class="card" onclick="toggleFF('diamond')">Diamond</div>
+</div>
+<div class="grid" id="ff-weekly">
+  <div class="card">29.000 💎</div>
+</div>
+<div class="grid" id="ff-monthly">
+  <div class="card">88.000 💎</div>
+</div>
+<div class="grid" id="ff-diamond">
+  <div class="card">5 💎<br>Rp 1.000</div>
+  <div class="card">10 💎<br>Rp 2.000</div>
+  <div class="card">15 💎<br>Rp 3.000</div>
+  <div class="card">20 💎<br>Rp 3.500</div>
+  <div class="card">50 💎<br>Rp 7.000</div>
+  <div class="card">70 💎<br>Rp 9.000</div>
+  <div class="card">100 💎<br>Rp 13.500</div>
+  <div class="card">140 💎<br>Rp 18.500</div>
+  <div class="card">150 💎<br>Rp 20.000</div>
+  <div class="card">210 💎<br>Rp 28.000</div>
+  <div class="card">355 💎<br>Rp 47.000</div>
+  <div class="card">425 💎<br>Rp 54.000</div>
+  <div class="card">500 💎<br>Rp 63.000</div>
+  <div class="card">720 💎<br>Rp 94.000</div>
+  <div class="card">1050 💎<br>Rp 134.000</div>
 </div>
 <p id="selectedItem">Silakan pilih paket</p>
 <input placeholder="Masukkan ID / Nickname">
@@ -187,13 +241,25 @@ footer{
 <div class="back" onclick="goHome()">← Kembali</div>
 </div>
 
-<!-- ROBLOX -->
+<!-- Roblox -->
 <div id="rbx" class="page">
-<h2>Roblox</h2>
-<div class="grid show">
-  <div class="card" onclick="selectItem('80 Robux - Rp 16.000')">80 RBX<br>Rp 16.000</div>
-  <div class="card" onclick="selectItem('450 Robux - Rp 75.000')">450 RBX<br>Rp 75.000</div>
-  <div class="card" onclick="selectItem('1000 Robux - Rp 152.000')">1000 RBX<br>Rp 152.000</div>
+<h2>Roblox 🎮</h2>
+<div class="grid" id="rbx-categories" style="max-height:none;opacity:1;">
+  <div class="card" onclick="toggleRBX('regular')">RBX</div>
+</div>
+<div class="grid" id="rbx-regular">
+  <div class="card">80 RBX<br>Rp 16.000</div>
+  <div class="card">160 RBX<br>Rp 30.000</div>
+  <div class="card">240 RBX<br>Rp 45.000</div>
+  <div class="card">450 RBX<br>Rp 75.000</div>
+  <div class="card">500 RBX<br>Rp 82.000</div>
+  <div class="card">1000 RBX<br>Rp 152.000</div>
+  <div class="card">1500 RBX<br>Rp 230.000</div>
+  <div class="card">2000 RBX<br>Rp 290.000</div>
+  <div class="card">2500 RBX<br>Rp 360.000</div>
+  <div class="card">3000 RBX<br>Rp 427.000</div>
+  <div class="card">4000 RBX<br>Rp 557.000</div>
+  <div class="card">5000 RBX<br>Rp 690.000</div>
 </div>
 <p id="selectedItem">Silakan pilih paket</p>
 <input placeholder="Masukkan Username Roblox">
@@ -201,24 +267,43 @@ footer{
 <div class="back" onclick="goHome()">← Kembali</div>
 </div>
 
-<footer>
-© 2026 MawStore • Fast Top Up Game
-</footer>
-
 <script>
 let selectedText='';
 
 function openPage(id){
   document.getElementById('home').style.display='none';
   document.querySelectorAll('.page').forEach(p=>p.style.display='none');
-  document.getElementById(id).style.display='block';
+  const page=document.getElementById(id);
+  page.style.display='block';
   selectedText='';
-  document.querySelectorAll('#selectedItem').forEach(i=>i.innerText='Silakan pilih paket');
+  const info=page.querySelector('#selectedItem');
+  info.innerText='Silakan pilih paket';
+  
+  page.querySelectorAll('.card').forEach(c=>{
+    if(c.parentElement.id.endsWith('categories')) return;
+    c.onclick=()=>{ 
+      selectedText=c.innerText.replace(/\n/g,' - ');
+      info.innerText='Dipilih: '+selectedText;
+    }
+  });
 }
 
-function selectItem(text){
-  selectedText=text;
-  document.querySelectorAll('#selectedItem').forEach(i=>i.innerText='Dipilih: '+text);
+function toggleML(type){
+  const grids = ['ml-diamond','ml-weekly'];
+  grids.forEach(id=>document.getElementById(id).classList.remove('show'));
+  document.getElementById('ml-'+type).classList.toggle('show');
+}
+
+function toggleFF(type){
+  const grids = ['ff-diamond','ff-weekly','ff-monthly'];
+  grids.forEach(id=>document.getElementById(id).classList.remove('show'));
+  document.getElementById('ff-'+type).classList.toggle('show');
+}
+
+function toggleRBX(type){
+  const grids = ['rbx-regular'];
+  grids.forEach(id=>document.getElementById(id).classList.remove('show'));
+  document.getElementById('rbx-'+type).classList.toggle('show');
 }
 
 function goHome(){
@@ -234,7 +319,11 @@ function order(game){
   const msg=`Halo MawStore, saya mau order ${game}\nItem: ${selectedText}\nID: ${id}`;
   window.open(`https://instagram.com/mawstore_id?text=${encodeURIComponent(msg)}`,'_blank');
 }
-</script>
 
+function dmInstagram(msg){
+  const url = `https://instagram.com/mawstore_id?text=${encodeURIComponent(msg)}`;
+  window.open(url, '_blank');
+}
+</script>
 </body>
 </html>

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MawStore • Fast Top Up Game</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
 *{
   margin:0;
@@ -20,26 +22,26 @@ body{
 
 /* HEADER */
 .header{
-  padding:25px;
+  padding:30px 20px;
   text-align:center;
 }
 
 .header h1{
-  font-size:2.5rem;
+  font-size:2.6rem;
   background:linear-gradient(90deg,#38bdf8,#a855f7);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
 .header p{
-  opacity:.8;
-  margin-top:6px;
+  opacity:.85;
+  margin-top:8px;
 }
 
 /* BANNER */
 .banner{
   max-width:1100px;
-  margin:10px auto 30px;
+  margin:10px auto 35px;
   padding:0 20px;
 }
 
@@ -59,7 +61,7 @@ body{
 .menu{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+  gap:22px;
   max-width:900px;
   margin:0 auto;
   padding:20px;
@@ -67,23 +69,23 @@ body{
 
 .card{
   background:rgba(255,255,255,.08);
-  backdrop-filter:blur(12px);
-  border-radius:20px;
-  padding:25px;
+  backdrop-filter:blur(14px);
+  border-radius:22px;
+  padding:28px;
   text-align:center;
   cursor:pointer;
   transition:.3s;
-  box-shadow:0 10px 30px rgba(0,0,0,.3);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
 }
 
 .card:hover{
-  transform:translateY(-8px) scale(1.03);
+  transform:translateY(-10px) scale(1.04);
   box-shadow:0 25px 60px rgba(168,85,247,.5);
 }
 
 .card img{
-  width:80px;
-  margin-bottom:15px;
+  width:85px;
+  margin-bottom:18px;
 }
 
 .card h3{
@@ -95,24 +97,24 @@ body{
   display:none;
   max-width:500px;
   margin:30px auto;
-  padding:25px;
+  padding:28px;
   background:rgba(255,255,255,.1);
   border-radius:25px;
-  backdrop-filter:blur(15px);
-  box-shadow:0 20px 60px rgba(0,0,0,.4);
+  backdrop-filter:blur(16px);
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
 }
 
 .page h2{
   text-align:center;
-  margin-bottom:20px;
+  margin-bottom:22px;
 }
 
 input,select,button{
   width:100%;
-  padding:12px;
+  padding:13px;
   margin-bottom:15px;
   border:none;
-  border-radius:12px;
+  border-radius:14px;
   font-size:1rem;
 }
 
@@ -124,7 +126,7 @@ input,select{
 button{
   background:linear-gradient(90deg,#22d3ee,#a855f7);
   color:#fff;
-  font-weight:bold;
+  font-weight:700;
   cursor:pointer;
 }
 
@@ -135,7 +137,7 @@ button:hover{
 /* FOOTER */
 .footer{
   text-align:center;
-  padding:25px;
+  padding:30px;
   opacity:.7;
   font-size:.9rem;
 }
@@ -152,25 +154,23 @@ button:hover{
 
 <!-- BANNER -->
 <div class="banner">
-  <a onclick="openPage('rbx')">
-    <img src="banner.jpg" alt="Top Up Game MawStore">
-  </a>
+  <img src="banner.jpg" alt="Top Up Game MawStore">
 </div>
 
 <!-- MENU -->
 <div class="menu" id="menu">
   <div class="card" onclick="openPage('rbx')">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Roblox_Logo_2022.jpg">
+    <img src="roblox.png">
     <h3>Roblox (Robux)</h3>
   </div>
 
   <div class="card" onclick="openPage('ml')">
-    <img src="https://seeklogo.com/images/M/mobile-legends-logo-DAFCE7E0B3-seeklogo.com.png">
+    <img src="ml.png">
     <h3>Mobile Legends</h3>
   </div>
 
   <div class="card" onclick="openPage('ff')">
-    <img src="https://seeklogo.com/images/F/free-fire-logo-6A7D71E19F-seeklogo.com.png">
+    <img src="ff.png">
     <h3>Free Fire</h3>
   </div>
 </div>

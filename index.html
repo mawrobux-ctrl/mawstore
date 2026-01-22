@@ -1,329 +1,206 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MawStore - Top Up Game</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MawStore • Fast Top Up Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    /* NAVBAR */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    }
+    .nav {
+      max-width: 1200px;
+      margin: auto;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 20px;
+      color: #2563eb;
+    }
+    .nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #374151;
+      font-weight: 500;
+    }
 
-<style>
-body{
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(135deg,#2b1055,#5f2c82,#1e3c72);
-  color:white;
-  min-height:100vh;
-}
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      padding: 80px 16px;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: 40px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .hero p {
+      opacity: .9;
+      margin-bottom: 24px;
+    }
+    .hero button {
+      padding: 14px 28px;
+      border: none;
+      border-radius: 10px;
+      background: white;
+      color: #2563eb;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-.header{text-align:center;padding:40px 20px}
-.logo{width:120px;animation:float 3s ease-in-out infinite}
-h1{font-family:'Orbitron',sans-serif;margin:10px 0}
-.ig{
-  display:inline-block;
-  margin-top:10px;
-  padding:8px 20px;
-  border-radius:20px;
-  background:linear-gradient(45deg,#a855f7,#3b82f6);
-  color:white;
-  text-decoration:none;
-  font-weight:600;
-}
+    /* SECTION */
+    section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 60px 16px;
+    }
+    section h2 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
 
-.menu{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:25px;
-  max-width:900px;
-  margin:auto;
-  padding:30px;
-}
+    /* PRODUCT CARD */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.05);
+      transition: .3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h3 {
+      margin-bottom: 10px;
+    }
+    .price {
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 16px;
+    }
+    .card button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      background: #2563eb;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
 
-.game{
-  background:rgba(255,255,255,.12);
-  backdrop-filter:blur(10px);
-  border-radius:20px;
-  padding:25px;
-  text-align:center;
-  cursor:pointer;
-  transition:.3s;
-}
-.game img{width:90px;animation:float 4s ease-in-out infinite}
-.game:hover{transform:scale(1.08);box-shadow:0 0 30px rgba(168,85,247,.6)}
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #9ca3af;
+      text-align: center;
+      padding: 30px 16px;
+      margin-top: 60px;
+    }
 
-.page{display:none;max-width:900px;margin:auto;padding:20px}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:15px;
-  margin-top:20px;
-  overflow:hidden;
-  transition:max-height 0.5s ease, opacity 0.5s ease;
-  max-height:0;
-  opacity:0;
-}
-
-.grid.show{
-  max-height:2000px; 
-  opacity:1;
-}
-
-.card{
-  background:rgba(255,255,255,.15);
-  border-radius:15px;
-  padding:12px;
-  text-align:center;
-  font-weight:600;
-  cursor:pointer;
-  transition:background 0.3s, transform 0.3s;
-}
-.card:hover{background:rgba(168,85,247,.5); transform:scale(1.05);}
-
-input{
-  width:100%;
-  padding:12px;
-  border-radius:12px;
-  border:none;
-  margin-top:15px;
-}
-
-.btn{
-  margin-top:15px;
-  padding:14px;
-  text-align:center;
-  background:linear-gradient(45deg,#a855f7,#3b82f6);
-  border-radius:20px;
-  font-weight:700;
-  cursor:pointer;
-}
-
-.back{text-align:center;margin-top:15px;opacity:.8;cursor:pointer}
-
-@keyframes float{
-  0%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
-  100%{transform:translateY(0)}
-}
-
-@media(max-width:600px){
-  .menu{grid-template-columns:repeat(auto-fit,minmax(140px,1fr));}
-  .grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));}
-}
-</style>
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- HOME -->
-<div id="home">
-  <div class="header">
-    <img src="logo.png" class="logo">
-    <h1>MawStore</h1>
-    <p>Top Up Game Aman & Terpercaya</p>
-    <a class="ig" href="https://instagram.com/mawstore_id">@mawstore_id</a>
-  </div>
-
-  <!-- Baris 1: 3 Game Utama -->
-  <div class="menu">
-    <div class="game" onclick="openPage('ml')">
-      <img src="ml.png"><h3>Mobile Legends</h3>
-    </div>
-    <div class="game" onclick="openPage('ff')">
-      <img src="ff.png"><h3>Free Fire</h3>
-    </div>
-    <div class="game" onclick="openPage('rbx')">
-      <img src="roblox.png"><h3>Roblox</h3>
+<header>
+  <div class="nav">
+    <div class="logo">MawStore</div>
+    <div>
+      <a href="#produk">Produk</a>
+      <a href="#cara">Cara Top Up</a>
     </div>
   </div>
+</header>
 
-  <!-- Baris 2: REKBER & JUAL BELI AKUN -->
-  <div class="menu" style="margin-top:20px;">
-    <div class="game" onclick="dmInstagram('mau rekber min')">
-      <h3>🤝 REKBER</h3>
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Top Up Game Cepat & Aman</h1>
+      <p>Top up Robux resmi, proses cepat, pembayaran lengkap.</p>
+      <button onclick="document.getElementById('produk').scrollIntoView({behavior:'smooth'})">
+        Top Up Sekarang
+      </button>
     </div>
-    <div class="game" onclick="dmInstagram('mau jual/beli akun min')">
-      <h3>💰 JUAL BELI AKUN GAME</h3>
+    <div>
+      <img src="https://i.imgur.com/6X8Kq5T.png" alt="Game" style="width:100%;border-radius:20px;">
     </div>
   </div>
 </div>
 
-<!-- ML, FF, ROBLOX Pages tetap sama seperti versi full sebelumnya -->
-<!-- Mobile Legends -->
-<div id="ml" class="page">
-<h2>Mobile Legends 💎</h2>
-<div class="grid" id="ml-categories" style="max-height:none;opacity:1;">
-  <div class="card" onclick="toggleML('diamond')">Diamond</div>
-  <div class="card" onclick="toggleML('weekly')">Weekly Diamond Pass</div>
-</div>
-<div class="grid" id="ml-diamond">
-  <div class="card">5 💎<br>Rp 1.636</div>
-  <div class="card">12 💎<br>Rp 3.600</div>
-  <div class="card">19 💎<br>Rp 5.680</div>
-  <div class="card">28 💎<br>Rp 8.000</div>
-  <div class="card">44 💎<br>Rp 12.150</div>
-  <div class="card">59 💎<br>Rp 16.100</div>
-  <div class="card">85 💎<br>Rp 23.300</div>
-  <div class="card">88 💎<br>Rp 24.500</div>
-  <div class="card">113 💎<br>Rp 31.450</div>
-  <div class="card">170 💎<br>Rp 46.500</div>
-  <div class="card">172 💎<br>Rp 47.200</div>
-  <div class="card">240 💎<br>Rp 66.100</div>
-  <div class="card">257 💎<br>Rp 69.500</div>
-  <div class="card">259 💎<br>Rp 70.500</div>
-  <div class="card">284 💎<br>Rp 77.589</div>
-  <div class="card">296 💎<br>Rp 80.550</div>
-  <div class="card">345 💎<br>Rp 93.400</div>
-  <div class="card">355 💎<br>Rp 95.000</div>
-  <div class="card">408 💎<br>Rp 111.150</div>
-  <div class="card">427 💎<br>Rp 115.000</div>
-  <div class="card">430 💎<br>Rp 116.000</div>
-  <div class="card">514 💎<br>Rp 139.500</div>
-  <div class="card">568 💎<br>Rp 152.100</div>
-  <div class="card">601 💎<br>Rp 158.700</div>
-  <div class="card">706 💎<br>Rp 188.000</div>
-  <div class="card">875 💎<br>Rp 233.437</div>
-  <div class="card">879 💎<br>Rp 231.000</div>
-  <div class="card">963 💎<br>Rp 254.700</div>
-  <div class="card">1050 💎<br>Rp 285.845</div>
-  <div class="card">1139 💎<br>Rp 304.500</div>
-  <div class="card">1220 💎<br>Rp 324.000</div>
-  <div class="card">1412 💎<br>Rp 364.000</div>
-  <div class="card">2010 💎<br>Rp 580.100</div>
-  <div class="card">2197 💎<br>Rp 548.000</div>
-  <div class="card">4020 💎<br>Rp 1.020.100</div>
-  <div class="card">4830 💎<br>Rp 1.222.035</div>
-  <div class="card">5532 💎<br>Rp 1.400.000</div>
-  <div class="card">9288 💎<br>Rp 2.280.500</div>
-</div>
-<div class="grid" id="ml-weekly">
-  <div class="card">28.800 💎</div>
-</div>
-<p id="selectedItem">Silakan pilih paket</p>
-<input placeholder="Masukkan ID / Nickname">
-<div class="btn" onclick="order('Mobile Legends')">Order via Instagram</div>
-<div class="back" onclick="goHome()">← Kembali</div>
-</div>
+<section id="produk">
+  <h2>Top Up Robux</h2>
+  <div class="products">
+    <div class="card">
+      <h3>80 Robux</h3>
+      <div class="price">Rp 15.000</div>
+      <button>Buy Now</button>
+    </div>
+    <div class="card">
+      <h3>400 Robux</h3>
+      <div class="price">Rp 75.000</div>
+      <button>Buy Now</button>
+    </div>
+    <div class="card">
+      <h3>800 Robux</h3>
+      <div class="price">Rp 145.000</div>
+      <button>Buy Now</button>
+    </div>
+  </div>
+</section>
 
-<!-- Free Fire -->
-<div id="ff" class="page">
-<h2>Free Fire 🔥</h2>
-<div class="grid" id="ff-categories" style="max-height:none;opacity:1;">
-  <div class="card" onclick="toggleFF('weekly')">Paket Mingguan</div>
-  <div class="card" onclick="toggleFF('monthly')">Paket Bulanan</div>
-  <div class="card" onclick="toggleFF('diamond')">Diamond</div>
-</div>
-<div class="grid" id="ff-weekly">
-  <div class="card">29.000 💎</div>
-</div>
-<div class="grid" id="ff-monthly">
-  <div class="card">88.000 💎</div>
-</div>
-<div class="grid" id="ff-diamond">
-  <div class="card">5 💎<br>Rp 1.000</div>
-  <div class="card">10 💎<br>Rp 2.000</div>
-  <div class="card">15 💎<br>Rp 3.000</div>
-  <div class="card">20 💎<br>Rp 3.500</div>
-  <div class="card">50 💎<br>Rp 7.000</div>
-  <div class="card">70 💎<br>Rp 9.000</div>
-  <div class="card">100 💎<br>Rp 13.500</div>
-  <div class="card">140 💎<br>Rp 18.500</div>
-  <div class="card">150 💎<br>Rp 20.000</div>
-  <div class="card">210 💎<br>Rp 28.000</div>
-  <div class="card">355 💎<br>Rp 47.000</div>
-  <div class="card">425 💎<br>Rp 54.000</div>
-  <div class="card">500 💎<br>Rp 63.000</div>
-  <div class="card">720 💎<br>Rp 94.000</div>
-  <div class="card">1050 💎<br>Rp 134.000</div>
-</div>
-<p id="selectedItem">Silakan pilih paket</p>
-<input placeholder="Masukkan ID / Nickname">
-<div class="btn" onclick="order('Free Fire')">Order via Instagram</div>
-<div class="back" onclick="goHome()">← Kembali</div>
-</div>
+<section id="cara">
+  <h2>Cara Top Up</h2>
+  <p style="text-align:center;max-width:700px;margin:auto;">
+    1. Pilih paket Robux<br>
+    2. Masukkan Username Roblox<br>
+    3. Pilih pembayaran (Dana, GoPay, ShopeePay, Bank)<br>
+    4. Selesaikan pembayaran<br>
+    5. Robux masuk otomatis
+  </p>
+</section>
 
-<!-- Roblox -->
-<div id="rbx" class="page">
-<h2>Roblox 🎮</h2>
-<div class="grid" id="rbx-categories" style="max-height:none;opacity:1;">
-  <div class="card" onclick="toggleRBX('regular')">RBX</div>
-</div>
-<div class="grid" id="rbx-regular">
-  <div class="card">80 RBX<br>Rp 16.000</div>
-  <div class="card">160 RBX<br>Rp 30.000</div>
-  <div class="card">240 RBX<br>Rp 45.000</div>
-  <div class="card">450 RBX<br>Rp 75.000</div>
-  <div class="card">500 RBX<br>Rp 82.000</div>
-  <div class="card">1000 RBX<br>Rp 152.000</div>
-  <div class="card">1500 RBX<br>Rp 230.000</div>
-  <div class="card">2000 RBX<br>Rp 290.000</div>
-  <div class="card">2500 RBX<br>Rp 360.000</div>
-  <div class="card">3000 RBX<br>Rp 427.000</div>
-  <div class="card">4000 RBX<br>Rp 557.000</div>
-  <div class="card">5000 RBX<br>Rp 690.000</div>
-</div>
-<p id="selectedItem">Silakan pilih paket</p>
-<input placeholder="Masukkan Username Roblox">
-<div class="btn" onclick="order('Roblox')">Order via Instagram</div>
-<div class="back" onclick="goHome()">← Kembali</div>
-</div>
+<footer>
+  © 2026 MawStore • Fast Top Up Game
+</footer>
 
-<script>
-let selectedText='';
-
-function openPage(id){
-  document.getElementById('home').style.display='none';
-  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
-  const page=document.getElementById(id);
-  page.style.display='block';
-  selectedText='';
-  const info=page.querySelector('#selectedItem');
-  info.innerText='Silakan pilih paket';
-  
-  page.querySelectorAll('.card').forEach(c=>{
-    if(c.parentElement.id.endsWith('categories')) return;
-    c.onclick=()=>{ 
-      selectedText=c.innerText.replace(/\n/g,' - ');
-      info.innerText='Dipilih: '+selectedText;
-    }
-  });
-}
-
-function toggleML(type){
-  const grids = ['ml-diamond','ml-weekly'];
-  grids.forEach(id=>document.getElementById(id).classList.remove('show'));
-  document.getElementById('ml-'+type).classList.toggle('show');
-}
-
-function toggleFF(type){
-  const grids = ['ff-diamond','ff-weekly','ff-monthly'];
-  grids.forEach(id=>document.getElementById(id).classList.remove('show'));
-  document.getElementById('ff-'+type).classList.toggle('show');
-}
-
-function toggleRBX(type){
-  const grids = ['rbx-regular'];
-  grids.forEach(id=>document.getElementById(id).classList.remove('show'));
-  document.getElementById('rbx-'+type).classList.toggle('show');
-}
-
-function goHome(){
-  document.getElementById('home').style.display='block';
-  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
-}
-
-function order(game){
-  const page=document.querySelector('.page[style*="block"]');
-  const id=page.querySelector('input').value;
-  if(!selectedText)return alert('Pilih paket!');
-  if(!id)return alert('Isi ID!');
-  const msg=`Halo MawStore, saya mau order ${game}\nItem: ${selectedText}\nID: ${id}`;
-  window.open(`https://instagram.com/mawstore_id?text=${encodeURIComponent(msg)}`,'_blank');
-}
-
-function dmInstagram(msg){
-  const url = `https://instagram.com/mawstore_id?text=${encodeURIComponent(msg)}`;
-  window.open(url, '_blank');
-}
-</script>
 </body>
 </html>
